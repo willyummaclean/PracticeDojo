@@ -7,15 +7,9 @@ export const PlanDetails = ( {currentUser} ) => {
     const [plan, setPlan] = useState({})
     const {planId} = useParams()
     
-
     useEffect(() => {
-        setPlan(planId)
+        getPlanById(planId).then((planObject) => setPlan(planObject) )
     }, [planId])
-    
-    useEffect(() => {
-        getPlanById(plan.id)
-    }, [plan])
-
 
     return (
         <>

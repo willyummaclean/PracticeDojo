@@ -4,3 +4,14 @@ export const getPlanById = (id) => {
     return fetch(`${apiUrl}/plans/${id}`)
     .then((res) => res.json())
 }
+
+export const createPracticePlan = (plan) => {
+    return fetch(`${apiUrl}/plans`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(plan)
+    })
+}
+
