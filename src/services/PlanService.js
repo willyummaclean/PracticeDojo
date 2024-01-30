@@ -15,3 +15,6 @@ export const createPracticePlan = (plan) => {
     })
 }
 
+export const getAllPlans = () => {    
+    return fetch(`${apiUrl}/plans`).then((res) => res.json())
+}

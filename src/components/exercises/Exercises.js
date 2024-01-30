@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom"
 
 export const Exercises = () => {
     const [exercises, setExercises] = useState([])
-    const [detailsId, setDetailsId] = useState(1)
+    const [detailsId, setDetailsId] = useState(null)
     const navigate = useNavigate()
 
  
@@ -20,9 +20,11 @@ export const Exercises = () => {
                 <div className="col-sm-8">
                 <ExerciseList setDetailsId={setDetailsId}/>
                 </div>
-                <div className="col-sm-4">
+                {detailsId?
+                (<div className="col-sm-4">
                 <ExerciseDetails detailsId={detailsId}/>
-                </div>
+                </div>) : ""
+                }   
             </div>
         </div>
         </>
