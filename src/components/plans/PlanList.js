@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { getPlans } from "../../services/UserService"
 import { Link, useNavigate } from "react-router-dom"
+import { deletePlan } from "../../services/PlanService"
 
 
 export const PlanList = ( {currentUser} ) => {
@@ -16,10 +17,17 @@ export const PlanList = ( {currentUser} ) => {
 
     }, [currentUser, plans])
 
-    useEffect(() => {
+    const getAndSetPlans = () => {
         getPlans().then((plans) => setPlans(plans))
+    }
+
+    useEffect(() => {
+        getAndSetPlans()
     }, [])
 
+    const handleDelete = (planId) => {
+        deletePlan(planId).then(() => getAndSetPlans())
+    }
     return ( 
         <div>
             <h2>My Plans</h2>
@@ -29,7 +37,10 @@ export const PlanList = ( {currentUser} ) => {
             <article>
                 {userPlans.map((plan) => {
                     return (
-                    <Link to={`/myplans/${plan.id}`}> <p>{plan.name}</p> </Link>
+                    <>
+                    <div><Link to={`/myplans/${plan.id}`}> <p>{plan.name}</p> </Link>
+                    <button onClick={() => handleDelete(plan.id)}>Delete</button></div>
+                    </>
                     )
                 })}
             </article>

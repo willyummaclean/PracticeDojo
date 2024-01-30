@@ -18,3 +18,9 @@ export const createPracticePlan = (plan) => {
 export const getAllPlans = () => {    
     return fetch(`${apiUrl}/plans`).then((res) => res.json())
 }
+
+export const deletePlan = (planId) => {
+    return fetch(`${apiUrl}/plans/${planId}`, {
+      method: "DELETE",
+    })
+}
