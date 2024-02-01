@@ -40,6 +40,7 @@ export const PlanList = ( {currentUser} ) => {
                     <>
                     <div><Link to={`/myplans/${plan.id}`}> <p>{plan.name}</p> </Link>
                     <button onClick={() => handleDelete(plan.id)}>Delete</button></div>
+                    <button onClick={() => navigate(`editplan/${plan.id}`)}>Edit</button>
                     </>
                     )
                 })}

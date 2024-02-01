@@ -18,3 +18,19 @@ export const CreatePracticeExercise = (exercise) => {
       body: JSON.stringify(exercise)
     })
 }
+
+export const deleteExercise = (exerciseId) => {
+  return fetch(`${apiUrl}/exercises/${exerciseId}`, {
+    method: "DELETE",
+  })
+}
+
+export const EditPracticeExercise = (editedExercise, exerciseId) => {
+  return fetch(`${apiUrl}/exercises/${exerciseId}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(editedExercise)
+  })
+}

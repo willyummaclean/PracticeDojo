@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react"
-import { createPracticePlan, getAllPlans } from "../../services/PlanService"
-import { useNavigate } from "react-router-dom"
+import { createPracticePlan, getAllPlans, getPlanById } from "../../services/PlanService"
+import { useNavigate, useParams } from "react-router-dom"
 import { getCategories } from "../../services/CategoryService"
 import { getExercises } from "../../services/ExerciseService"
+import { deletePlanExercise } from "../../services/PlanExercisesService"
 
 
-export const CreatePlan = ( {currentUser} ) => {
+export const EditPlan = ( {currentUser} ) => {
     
     const [exercises, setExercises] = useState([])
     const [planExercises, setPlanExercises] = useState([])
@@ -15,27 +16,20 @@ export const CreatePlan = ( {currentUser} ) => {
     const [categories, setCategories] = useState([])
     const [categoryId, setCategoryId] = useState(null)
 
-    const [plans, setPlans] = useState([])
-    const [lastPlan, setLastPlan] = useState({})
-    const [planId, setPlanId] = useState(null)
+    const [plan, setPlan] = useState({})
+    const { planId } = useParams()
     const navigate = useNavigate()
 
     useEffect(() => {
         getCategories().then((data) => setCategories(data));
-        getAllPlans().then((plans) => setPlans(plans))
-       
-    }, [])
+        getPlanById(parseInt(planId)).then((data) => setPlan(data))
+    }, [planId])
+
 
     useEffect(() => {
-        setLastPlan(plans[plans.length -1])
+        setPlanExercises(plan.planExercises)
+    }, [plan] )
 
-    }, [plans])
-
-    useEffect(() => {
-        const copy = {...lastPlan}
-        const lastPlanId = copy.id
-       setPlanId(lastPlanId + 1)
-    }, [lastPlan])
 
     const handleCategory = (event) => {
         setCategoryId(parseInt(event.target.value));
@@ -47,14 +41,16 @@ export const CreatePlan = ( {currentUser} ) => {
     }
 
     const handleRemove = (exercise) => {
-        const filteredExercises = planExercises.filter((e) => e.exerciseId !== exercise.exerciseId)
-       setPlanExercises(filteredExercises)
+        deletePlanExercise(exercise.id)
+       
+        
+    
     }
 
     const handleAdd = (exercise) => {
         const copy = [...planExercises]
         const planExercise = {
-            planId: parseInt(planId), 
+            planId: plan.id, 
             exerciseId: exercise.id,
             name: exercise.name
         }
@@ -64,12 +60,8 @@ export const CreatePlan = ( {currentUser} ) => {
 
 
     const handleSave = () => {
-        const planObject = {
-            "userId": currentUser.id,
-            "name": name
-        }
-        createPracticePlan(planObject)
-        .then(() => planExercises.map((p) => {
+      
+     planExercises.map((p) => {
             return fetch(`http://localhost:8088/planexercises`, {
                 method: "POST",
                 headers: {
@@ -78,18 +70,18 @@ export const CreatePlan = ( {currentUser} ) => {
                 body: JSON.stringify(p)
               }
             )
-        }))
+        })
 
         navigate("/myplans")
     }
 
     return (
         <>
-        <h2>Create Plan</h2>
+        <h2>Edit Plan</h2>
         <div>
             <input
             type="text"
-            placeholder="Plan Name"
+            defaultValue={plan.name}
             onChange={(e) => setName(e.target.value)}
             ></input>
         </div>
