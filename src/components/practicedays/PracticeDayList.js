@@ -18,15 +18,14 @@ export const PracticeDayList = ( {currentUser} ) => {
 
     useEffect(() => {
         // const array = [...userPlans.practicDays]
+        //    const array = practiceDaysArray.filter((p) => p.hasOwnProperty.id === true)
 
        const practiceDaysArray = userPlans.map((u) => {
         return u.practiceDays
        }
        )
-       const flatArray = practiceDaysArray.flat(())
-       const array = practiceDaysArray.filter((p) => p.hasOwnProperty.id === true)
-       
-       console.log(practiceDaysArray)
+       const flatArray = practiceDaysArray.flat()
+        setPracticeDays(flatArray)
     }, [userPlans])
 
     const getAndSetPlans = () => {
