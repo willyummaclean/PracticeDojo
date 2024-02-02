@@ -12,6 +12,8 @@ import { EditExercise } from "../components/exercises/EditExercise"
 import { EditPlan } from "../components/plans/EditPlan"
 import { PracticeDayList } from "../components/practicedays/PracticeDayList"
 import { CreatePracticeDay } from "../components/practicedays/CreatePracticeDay"
+import { PracticeDayDetails } from "../components/practicedays/PracticeDayDetails"
+import { EditPracticeDay } from "../components/practicedays/EditPracticeDay"
 
 
 export const ApplicationViews = () => {
@@ -53,6 +55,10 @@ useEffect(() => {
             <Route path="practicedays">
                 <Route index element={<PracticeDayList currentUser={currentUser}/>}/>
                 <Route path="createpracticeday" element={<CreatePracticeDay currentUser={currentUser}/>}/>
+                <Route path=":practicedayId" element={<PracticeDayDetails currentUser={currentUser}/>}/>
+                <Route path="edit">
+                    <Route path=":practicedayId" element={<EditPracticeDay currentUser={currentUser}/>}/>
+                </Route>
             </Route>
             <Route path="updateprofile" element={<UpdateProfile currentUser={currentUser} />} />
             </Route>

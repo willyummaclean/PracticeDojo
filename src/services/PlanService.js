@@ -22,7 +22,7 @@ export const getAllPlans = () => {
 export const deletePlan = (planId) => {
     return fetch(`${apiUrl}/plans/${planId}`, {
       method: "DELETE",
-    })
+    }).then((res) => res.json())
 }
 
 export const editPlan = (plan) => {

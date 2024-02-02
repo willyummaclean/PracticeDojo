@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import { getPlans } from "../../services/UserService"
 import { Link, useNavigate } from "react-router-dom"
 import { deletePlan, getAllPlans } from "../../services/PlanService"
+import { deletePracticeDay } from "../../services/PracticeDayService"
 
 
 export const PracticeDayList = ( {currentUser} ) => {
@@ -22,8 +23,7 @@ export const PracticeDayList = ( {currentUser} ) => {
 
        const practiceDaysArray = userPlans.map((u) => {
         return u.practiceDays
-       }
-       )
+       })
        const flatArray = practiceDaysArray.flat()
         setPracticeDays(flatArray)
     }, [userPlans])
@@ -36,8 +36,8 @@ export const PracticeDayList = ( {currentUser} ) => {
         getAndSetPlans()
     }, [])
 
-    const handleDelete = (planId) => {
-        deletePlan(planId).then(() => getAndSetPlans())
+    const handleDelete = (practiceDayId) => {
+        deletePracticeDay(practiceDayId).then(() => getAndSetPlans())
     }
     return ( 
         <div>
@@ -49,9 +49,9 @@ export const PracticeDayList = ( {currentUser} ) => {
                 {practiceDays.map((practiceDay) => {
                     return (
                     <>
-                    <div><Link to={`/praticeDay/${practiceDay.id}`}> <p>{practiceDay.date}</p> </Link>
+                    <div><Link to={`/practicedays/${practiceDay.id}`}> <p>{practiceDay.date}</p> </Link>
                     <button onClick={() => handleDelete(practiceDay.id)}>Delete</button>
-                    <button onClick={() => navigate(`editpracticeday/${practiceDay.id}`)}>Edit</button></div>
+                    <button onClick={() => navigate(`/practicedays/edit/${practiceDay.id}`)}>Edit</button></div>
                     </>
                     )
                 })}
