@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { createPracticePlan, getAllPlans, getPlanById } from "../../services/PlanService"
+import { createPracticePlan, editPlan, getAllPlans, getPlanById } from "../../services/PlanService"
 import { useNavigate, useParams } from "react-router-dom"
 import { getCategories } from "../../services/CategoryService"
 import { getExercises } from "../../services/ExerciseService"
@@ -10,7 +10,6 @@ export const EditPlan = ( {currentUser} ) => {
     
     const [exercises, setExercises] = useState([])
     const [planExercises, setPlanExercises] = useState([])
-
     const [name, setName] = useState("")
 
     const [categories, setCategories] = useState([])
@@ -28,7 +27,7 @@ export const EditPlan = ( {currentUser} ) => {
 
     useEffect(() => {
         setPlanExercises(plan.planExercises)
-    }, [plan] )
+    }, [plan])
 
 
     const handleCategory = (event) => {
@@ -42,9 +41,14 @@ export const EditPlan = ( {currentUser} ) => {
 
     const handleRemove = (exercise) => {
         deletePlanExercise(exercise.id)
-       
-        
-    
+        updatePlanExercises(exercise)
+      
+    }
+
+    const updatePlanExercises = (exercise) => {
+        const updatedPlanExercises = planExercises.filter((p) => p.id !== exercise.id)
+        setPlanExercises(updatedPlanExercises)
+
     }
 
     const handleAdd = (exercise) => {
@@ -60,17 +64,37 @@ export const EditPlan = ( {currentUser} ) => {
 
 
     const handleSave = () => {
-      
-     planExercises.map((p) => {
-            return fetch(`http://localhost:8088/planexercises`, {
-                method: "POST",
-                headers: {
-                  "Content-Type": "application/json"
-                },
-                body: JSON.stringify(p)
-              }
-            )
-        })
+
+        
+
+        const planObject = {
+            "name": name,
+            "userId": currentUser.id,
+            "id": plan.id
+        }
+
+        if (planObject.name === "") {
+            planObject.name = plan.name
+        }
+
+        editPlan(planObject);
+        // planExercises
+        for (const planExercise of planExercises) {
+            if (planExercise.hasOwnProperty("id")) {
+
+            } else {
+                return fetch(`http://localhost:8088/planexercises`, {
+                    method: "POST",
+                    headers: {
+                      "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(planExercise)
+
+            })}
+
+
+     
+        }
 
         navigate("/myplans")
     }

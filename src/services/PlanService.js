@@ -16,11 +16,22 @@ export const createPracticePlan = (plan) => {
 }
 
 export const getAllPlans = () => {    
-    return fetch(`${apiUrl}/plans`).then((res) => res.json())
+    return fetch(`${apiUrl}/plans?_embed=practiceDays`).then((res) => res.json())
 }
 
 export const deletePlan = (planId) => {
     return fetch(`${apiUrl}/plans/${planId}`, {
       method: "DELETE",
     })
+}
+
+export const editPlan = (plan) => {
+  return fetch(`${apiUrl}/plans/${plan.id}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(plan)
+  })
+  
 }

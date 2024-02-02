@@ -13,10 +13,13 @@ export const Navbar = () => {
                 <Link to="/myplans">My Plans</Link>
             </li>
             <li>
-                <Link to="/updateprofile">Update Profile</Link>
+                <Link to="/exercises">Exercises</Link>
             </li>
             <li>
-                <Link to="/exercises">Exercises</Link>
+                <Link to="/practicedays">Practice Days</Link>
+            </li>
+            <li>
+                <Link to="/updateprofile">Update Profile</Link>
             </li>
 
             {localStorage.getItem("musician_user") ? (
