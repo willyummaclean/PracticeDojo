@@ -1,14 +1,23 @@
 import { useEffect, useState } from "react"
-import { getExercises } from "../../services/ExerciseService"
+import { deleteExercise, getExercises } from "../../services/ExerciseService"
+import { useNavigate } from "react-router-dom"
 
 
 export const ExerciseList = ( {setDetailsId} ) => {
     const [exercises, setExercises] = useState([])
+    const navigate = useNavigate()
 
     useEffect(() => {
-        getExercises().then((data) => setExercises(data))
+       getAndSetExercises()
     }, [])
 
+    const getAndSetExercises = () => {
+        getExercises().then((data) => setExercises(data))
+    }
+
+    const handleDelete = (exerciseId) => {
+        deleteExercise(exerciseId).then(() => getAndSetExercises())
+    }
 
     return (
         <>
@@ -16,7 +25,11 @@ export const ExerciseList = ( {setDetailsId} ) => {
         <ul>
         {exercises.map((exercise) => {
             return (
+                <>
                 <li key={exercise.id} onClick={() => setDetailsId(exercise.id)}>{exercise.name}</li>
+                 <button onClick={() => handleDelete(exercise.id)}>Delete</button>
+                 <button onClick={() => navigate(`editexercise/${exercise.id}`)}>Edit</button>
+                 </>
             )}) }
         </ul>
         </>
