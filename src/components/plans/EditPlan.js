@@ -95,7 +95,6 @@ export const EditPlan = ( {currentUser} ) => {
 
      
         }
-
         navigate("/myplans")
     }
 

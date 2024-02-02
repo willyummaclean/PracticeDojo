@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react"
+import { useNavigate, useParams } from "react-router-dom"
 import { getAllPlans } from "../../services/PlanService"
-import { createPracticeDay } from "../../services/PracticeDayService"
-import { useNavigate } from "react-router-dom"
+import { editPracticeDay, getPracticeDayById } from "../../services/PracticeDayService"
 
-export const CreatePracticeDay =  ( {currentUser} ) => {
-    const [date, setDate] = useState("")
+
+export const EditPracticeDay = () => {
+    const { practicedayId } = useParams() 
     const [plan, setPlan] = useState(0)
     const [plans, setPlans] = useState([])
-    const [userPlans, setUserPlans] = useState([])
+    const [practiceDay, setPracticeDay] = useState({})
     const navigate = useNavigate()
 
     useEffect(() => {
@@ -15,24 +16,9 @@ export const CreatePracticeDay =  ( {currentUser} ) => {
     }, [])
 
     useEffect(() => {
-        const userid = currentUser.id
-        const userPlansData = plans.filter((plan) => plan.userId === userid)
-        setUserPlans(userPlansData)
-    }, [currentUser, plans])
+        getPracticeDayById(practicedayId).then((day) => setPracticeDay(day))
 
-    const getDate = () => {
-        const today = new Date();
-        const month = today.getMonth() + 1;
-        const year = today.getFullYear();
-        const date = today.getDate();
-        return `${month}/${date}/${year}`;
-      }
-
-    useEffect(() => {
-        let date = getDate()
-        setDate(date)
-
-    }, [])
+    }, [practicedayId])
 
     const handlePlan = (event) => {
         setPlan(parseInt(event.target.value))
@@ -40,26 +26,27 @@ export const CreatePracticeDay =  ( {currentUser} ) => {
     
     const handleSave = () => {
         const practiceDayObject = {
-            "date": date,
-            "planId": plan
+            "date": practiceDay.date,
+            "planId": plan,
+            "id": practiceDay.id
         }
-        createPracticeDay(practiceDayObject)
+        editPracticeDay(practiceDayObject)
         navigate("/practicedays")
     }
 
 
     return (
          <>
-        <h2>Log a Practice Day</h2>
+        <h2>Edit Practice Day</h2>
         <div>
-           <h1>{date}</h1>
+           <h1>{practiceDay.date}</h1>
         </div>
         <div>
             <label htmlFor="plan-select"></label>
                 <select name="plans" id="plan-select" 
                 onChange={(event) => handlePlan(event)}>
                     <option value="">--Please choose a Plan--</option>
-                    {userPlans.map((p) => {
+                    {plans.map((p) => {
                     return (
                         <option value={p.id}>{p.name}</option>
                     ) })}
@@ -68,6 +55,5 @@ export const CreatePracticeDay =  ( {currentUser} ) => {
         </div>
         </>
     )
+    
 }
-// onClick={(planId) =>
-//     handleSave(planId)}
