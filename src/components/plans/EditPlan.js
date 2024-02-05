@@ -76,21 +76,57 @@ export const EditPlan = ( {currentUser} ) => {
             planObject.name = plan.name
         }
         editPlan(planObject).then(() => {
-            for (const planExercise of planExercises) {
-                if (planExercise.hasOwnProperty("id")) {
-    
-                } else {
-                    return fetch(`http://localhost:8088/planexercises`, {
+            const filteredPlanExercises = planExercises.filter((p) => p.hasOwnProperty("id") === false)
+            const promises = filteredPlanExercises.map((p) => {
+                return fetch(`http://localhost:8088/planExercises`, {
                         method: "POST",
                         headers: {
                           "Content-Type": "application/json"
                         },
-                        body: JSON.stringify(planExercise)
-                })}
-            }
+                        body: JSON.stringify(p)
+                })
+
+            })
+        return Promise.all(promises) 
         })
-        navigate("/myplans")
+        .then(() => {
+        navigate("/myplans") 
+        })
+        
     }
+
+//     .then((res) => {
+//         const promises = selectedCategoryIds.map((c) => {
+//           return fetch("http://localhost:8088/quoteCategories", {
+//             method: "POST",
+//             headers: {
+//               "Content-Type": "application/json",
+//             },
+//             body: JSON.stringify({
+//               quoteId: res.id,
+//               categoryId: c,
+//             }),
+//           });
+//         });
+//         return Promise.all(promises);
+//       })
+//       .then(() => {
+//         navigate("/quotes");
+//       });
+//   };
+
+   // for (const planExercise of planExercises) {
+            //     if (planExercise.hasOwnProperty("id")) {
+    
+            //     } else {
+            //         return fetch(`http://localhost:8088/planexercises`, {
+            //             method: "POST",
+            //             headers: {
+            //               "Content-Type": "application/json"
+            //             },
+            //             body: JSON.stringify(planExercise)
+            //     })}
+            // }
 
     return (
         <>
