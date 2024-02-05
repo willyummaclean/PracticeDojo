@@ -40,9 +40,8 @@ export const EditPlan = ( {currentUser} ) => {
     }
 
     const handleRemove = (exercise) => {
-        deletePlanExercise(exercise.id)
-        updatePlanExercises(exercise)
-      
+        deletePlanExercise(exercise.id).then(() => updatePlanExercises(exercise))
+        
     }
 
     const updatePlanExercises = (exercise) => {
@@ -76,25 +75,20 @@ export const EditPlan = ( {currentUser} ) => {
         if (planObject.name === "") {
             planObject.name = plan.name
         }
-
-        editPlan(planObject);
-        // planExercises
-        for (const planExercise of planExercises) {
-            if (planExercise.hasOwnProperty("id")) {
-
-            } else {
-                return fetch(`http://localhost:8088/planexercises`, {
-                    method: "POST",
-                    headers: {
-                      "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify(planExercise)
-
-            })}
-
-
-     
-        }
+        editPlan(planObject).then(() => {
+            for (const planExercise of planExercises) {
+                if (planExercise.hasOwnProperty("id")) {
+    
+                } else {
+                    return fetch(`http://localhost:8088/planexercises`, {
+                        method: "POST",
+                        headers: {
+                          "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify(planExercise)
+                })}
+            }
+        })
         navigate("/myplans")
     }
 

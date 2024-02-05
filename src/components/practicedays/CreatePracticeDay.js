@@ -12,7 +12,13 @@ export const CreatePracticeDay =  ( {currentUser} ) => {
 
     useEffect(() => {
         getAllPlans().then((plans) => setPlans(plans))
+        
     }, [])
+
+    useEffect(() => {
+        plans.filter((p) => p.userId === currentUser.id)   
+    }, [plans, currentUser])
+
 
     useEffect(() => {
         const userid = currentUser.id
