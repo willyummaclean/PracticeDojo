@@ -94,40 +94,7 @@ export const EditPlan = ( {currentUser} ) => {
         })
         
     }
-
-//     .then((res) => {
-//         const promises = selectedCategoryIds.map((c) => {
-//           return fetch("http://localhost:8088/quoteCategories", {
-//             method: "POST",
-//             headers: {
-//               "Content-Type": "application/json",
-//             },
-//             body: JSON.stringify({
-//               quoteId: res.id,
-//               categoryId: c,
-//             }),
-//           });
-//         });
-//         return Promise.all(promises);
-//       })
-//       .then(() => {
-//         navigate("/quotes");
-//       });
-//   };
-
-   // for (const planExercise of planExercises) {
-            //     if (planExercise.hasOwnProperty("id")) {
     
-            //     } else {
-            //         return fetch(`http://localhost:8088/planexercises`, {
-            //             method: "POST",
-            //             headers: {
-            //               "Content-Type": "application/json"
-            //             },
-            //             body: JSON.stringify(planExercise)
-            //     })}
-            // }
-
     return (
         <>
         <h2>Edit Plan</h2>

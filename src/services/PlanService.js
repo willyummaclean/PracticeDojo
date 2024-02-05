@@ -32,6 +32,6 @@ export const editPlan = (plan) => {
       "Content-Type": "application/json"
     },
     body: JSON.stringify(plan)
-  })
+  }).then((res) => res.json())
   
 }
