@@ -20,12 +20,16 @@ export const PracticeDayDetails = () => {
 
     useEffect(() => {
         getPracticeDayById(practicedayId).then((practiceDayObject) => setPracticeDay(practiceDayObject));
+
     }, [practicedayId])
     
     
 
     useEffect(() => {
-        getPlanById(practiceDay.planId).then((planObject) => setPlan(planObject));
+        if (practiceDay.id) {
+        getPlanById(practiceDay.planId).then((planObject) => setPlan(planObject))
+        }
+     
     }, [practiceDay])
 
     useEffect(() => {

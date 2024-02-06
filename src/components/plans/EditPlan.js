@@ -39,10 +39,15 @@ export const EditPlan = ( {currentUser} ) => {
         .then((categoryexercises) => setExercises(categoryexercises))
     }
 
-    const handleRemove = (exercise) => {
-        deletePlanExercise(exercise.id).then(() => updatePlanExercises(exercise))
+    const handleRemove = (event) => {
+        deletePlanExercise(event.target.value).then(() => getAndSetPlan())
         
     }
+
+    const getAndSetPlan = () => {
+        getPlanById(parseInt(planId)).then((data) => setPlan(data))
+    }
+
 
     const updatePlanExercises = (exercise) => {
         const updatedPlanExercises = planExercises.filter((p) => p.id !== exercise.id)
@@ -51,20 +56,35 @@ export const EditPlan = ( {currentUser} ) => {
     }
 
     const handleAdd = (exercise) => {
-        const copy = [...planExercises]
+       
         const planExercise = {
             planId: plan.id, 
             exerciseId: exercise.id,
             name: exercise.name
         }
-        copy.push(planExercise)
-        setPlanExercises(copy)
+        const copy = [... planExercises]
+        postPlanExercise(planExercise).then((data) => {
+            copy.push(data)
+            setPlanExercises(copy)
+        
+        })
+        
+        
     }
 
 
-    const handleSave = () => {
+    const postPlanExercise = (p) => {
+      return fetch(`http://localhost:8088/planExercises`, {
+            method: "POST",
+            headers: {
+            "Content-Type": "application/json"
+            },
+            body: JSON.stringify(p)
+            }).then((res) => res.json())
+}
 
-        
+
+    const handleSave = () => {
 
         const planObject = {
             "name": name,
@@ -76,22 +96,11 @@ export const EditPlan = ( {currentUser} ) => {
             planObject.name = plan.name
         }
         editPlan(planObject).then(() => {
-            for (const planExercise of planExercises) {
-                if (planExercise.hasOwnProperty("id")) {
-    
-                } else {
-                    return fetch(`http://localhost:8088/planexercises`, {
-                        method: "POST",
-                        headers: {
-                          "Content-Type": "application/json"
-                        },
-                        body: JSON.stringify(planExercise)
-                })}
-            }
+        navigate("/myplans") 
         })
-        navigate("/myplans")
+        
     }
-
+    
     return (
         <>
         <h2>Edit Plan</h2>
@@ -131,7 +140,7 @@ export const EditPlan = ( {currentUser} ) => {
                 planExercises.map((e) => {
                     return (
                         <div>
-                        <h4>{e.name}<button onClick={() => handleRemove(e)} value={e.id}>Remove</button></h4>
+                        <h4>{e.name}<button onClick={(event) => handleRemove(event)} value={e.id}>Remove</button></h4>
                         </div>
                 )})
             ) : ("")}   

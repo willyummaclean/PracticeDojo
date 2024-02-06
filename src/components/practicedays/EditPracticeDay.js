@@ -4,16 +4,24 @@ import { getAllPlans } from "../../services/PlanService"
 import { editPracticeDay, getPracticeDayById } from "../../services/PracticeDayService"
 
 
-export const EditPracticeDay = () => {
+export const EditPracticeDay = ({currentUser}) => {
     const { practicedayId } = useParams() 
     const [plan, setPlan] = useState(0)
     const [plans, setPlans] = useState([])
+    const [userPlans, setUserPlans] = useState([])
     const [practiceDay, setPracticeDay] = useState({})
     const navigate = useNavigate()
 
     useEffect(() => {
         getAllPlans().then((plans) => setPlans(plans))
     }, [])
+
+    useEffect(() => {
+        const userid = currentUser.id
+        const userPlansData = plans.filter((plan) => plan.userId === userid)
+        setUserPlans(userPlansData)
+    }, [currentUser, plans])
+
 
     useEffect(() => {
         getPracticeDayById(practicedayId).then((day) => setPracticeDay(day))
@@ -43,10 +51,10 @@ export const EditPracticeDay = () => {
         </div>
         <div>
             <label htmlFor="plan-select"></label>
-                <select name="plans" id="plan-select" 
+                <select name="plans" id="plan-select"
                 onChange={(event) => handlePlan(event)}>
                     <option value="">--Please choose a Plan--</option>
-                    {plans.map((p) => {
+                    {userPlans.map((p) => {
                     return (
                         <option value={p.id}>{p.name}</option>
                     ) })}
