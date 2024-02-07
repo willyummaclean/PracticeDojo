@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import { getPlans } from "../../services/UserService"
 import { Link, useNavigate } from "react-router-dom"
 import { deletePlan } from "../../services/PlanService"
+import "./Plans.css"
 
 
 export const PlanList = ( {currentUser} ) => {
@@ -30,21 +31,32 @@ export const PlanList = ( {currentUser} ) => {
     }
     return ( 
         <div>
-            <h2>My Plans</h2>
-            <button
-            onClick={() => navigate("createplan")} 
-            >Create A New Plan</button>
-            <article>
+            <div className="container">
+                <div  className="title-container">
+                    <h2 className="title">My Plans</h2>
+                </div>
+                <div className="planBlock">
+                    <button className="button-87"
+                    onClick={() => navigate("createplan")} 
+                    >Create A New Plan</button>
+                </div>
+            
+            <article className="planContainer">
                 {userPlans.map((plan) => {
                     return (
                     <>
-                    <div><Link to={`/myplans/${plan.id}`}> <p>{plan.name}</p> </Link>
-                    <button onClick={() => handleDelete(plan.id)}>Delete</button></div>
-                    <button onClick={() => navigate(`editplan/${plan.id}`)}>Edit</button>
+                    <div  className="planBlock">
+                        <h4 className="planTitle">{plan.name}</h4> 
+                        <button className="button-87" onClick={() => navigate(`/myplans/${plan.id}`)}>View</button>
+                        <button className="button-87" onClick={() => navigate(`editplan/${plan.id}`)}>Edit</button>
+                        <button className="button-87" onClick={() => handleDelete(plan.id)}>Delete</button>
+                    </div>
                     </>
                     )
                 })}
             </article>
+            </div>
+           
         </div>
     )
 

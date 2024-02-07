@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { Route, Routes, Outlet } from "react-router-dom"
 import { PlanList } from "../components/plans/PlanList"
-import { Navbar } from "../components/navbar/Navbar"
+import { PracticeNavbar } from "../components/navbar/PracticeNavbar"
 import { Home } from "../components/plans/Home"
 import { UpdateProfile } from "../components/auth/UpdateProfile"
 import { PlanDetails } from "../components/plans/PlanDetails"
@@ -31,7 +31,7 @@ useEffect(() => {
             path="/"
             element={
               <>
-                <Navbar />
+                <PracticeNavbar />
                 <Outlet />
               </>
             }

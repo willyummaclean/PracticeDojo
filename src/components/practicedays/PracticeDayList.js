@@ -47,9 +47,10 @@ export const PracticeDayList = ( {currentUser} ) => {
             >Create A Practice Day</button>
             <article>
                 {practiceDays.map((practiceDay) => {
+                    const plan = plans.find((p) => p.id === practiceDay.planId)
                     return (
                     <>
-                    <div><Link to={`/practicedays/${practiceDay.id}`}> <p>{practiceDay.date}</p> </Link>
+                    <div><Link to={`/practicedays/${practiceDay.id}`}> <p>{practiceDay.date} : {plan.name}</p> </Link>
                     <button onClick={() => handleDelete(practiceDay.id)}>Delete</button>
                     <button onClick={() => navigate(`/practicedays/edit/${practiceDay.id}`)}>Edit</button></div>
                     </>

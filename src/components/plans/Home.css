@@ -1,0 +1,120 @@
+.title {
+    font-family: Trattatello, fantasy;
+    text-decoration: none;
+}
+
+.title-container {
+    margin: 2rem auto;
+    width: 60%;
+    text-align: center;
+    padding: 5rem 3rem;
+
+    width: 300px;
+    height: 300px;
+    margin: 20px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 2px 2px 15px 2px #111;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    perspective: 2000px;
+
+  }
+
+  * {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+  }
+  .container {
+    width: 100vw;
+    height: 70vh;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    font-family: "Montserrat", sans-serif;
+  }
+  
+  .block {
+    width: 300px;
+    height: 300px;
+    margin: 20px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 2px 2px 15px 2px #111;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    perspective: 2000px;
+    background-color: #666;
+  }
+  
+  .block--img {
+    width: 100%;
+    height: 100%;
+    background-position: center;
+    background-size: cover;
+    transform: rotateX(0deg);
+    transform-origin: top center;
+    transition: all 300ms ease-out;
+  }
+  
+  .block1 {
+    background-image: url("https://media.nga.gov/iiif/58fd1357-f915-42fe-bf91-7efb396dffd5/full/!384,384/0/default.jpg");
+  }
+  
+  .block2 {
+    background-image: url("https://media.nga.gov/iiif/aa33172d-31cf-4990-a25a-9c77b6cecbe3/full/!384,384/0/default.jpg");
+  }
+  
+  .block3 {
+    background-image: url("https://media.nga.gov/iiif/f70811d4-d943-40d4-a531-ae7755d89fd1/full/!384,384/0/default.jpg");
+  }
+  
+  .block--text {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+    background-color: #111;
+    color: antiquewhite;
+    transform: rotateX(120deg);
+    transform-origin: bottom center;
+    transition: all 300ms ease-in;
+  }
+  
+  .block:hover .block--text {
+    transform: rotateX(0deg);
+  }
+  
+  .block:hover .block--img {
+    transform: rotateX(-120deg);
+  }
+  
+  .text--head {
+    text-align: center;
+    font-size: 30px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    text-transform: uppercase;
+    color: #fdca40;
+  }
+  
+  .text--quote {
+    padding: 20px 10px 0px;
+    font-size: 18px;
+  }
+  
+  .text--person {
+    position: relative;
+    bottom: -40px;
+    text-align: end;
+    font-weight: 600;
+    color: #fdca40;
+  }
+  
