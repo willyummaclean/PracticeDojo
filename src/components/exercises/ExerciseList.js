@@ -21,17 +21,24 @@ export const ExerciseList = ( {setDetailsId} ) => {
 
     return (
         <>
-        <h2>Exercises</h2>
-        <ul>
+    
         {exercises.map((exercise) => {
             return (
                 <>
-                <li key={exercise.id} onClick={() => setDetailsId(exercise.id)}>{exercise.name}</li>
-                 <button onClick={() => handleDelete(exercise.id)}>Delete</button>
-                 <button onClick={() => navigate(`editexercise/${exercise.id}`)}>Edit</button>
+                <div className="planBlock">
+                    <h2 key={exercise.id} className="title"  onClick={() => setDetailsId(exercise.id)}>{exercise.name}</h2>
+                    <div>
+                    <button className="button-74" onClick={() => navigate(`${exercise.id}`)}>View</button>
+                    </div>
+                    <div>
+                    <button className="button-74" onClick={() => navigate(`editexercise/${exercise.id}`)}>Edit</button>
+                    </div>
+                    <div>
+                    <button className="button-74" onClick={() => handleDelete(exercise.id)}>Delete</button> 
+                    </div>
+                 </div>
                  </>
             )}) }
-        </ul>
         </>
 
     )

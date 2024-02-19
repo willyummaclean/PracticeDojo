@@ -29,27 +29,39 @@ export const CreateExercise = ( {currentUser} ) => {
 
     return (
         <>
-        <h2>Create An Exercise</h2>
-        <input
-        type="text"
-        placeholder="Exercise Name"
-        onChange={(e) => setName(e.target.value)}
-        ></input>
-        <label for="category-select"></label>
-            <select name="categories" id="category-select" 
-            onChange={(event) => setCategoryId(event.target.value) }>
-                <option value="">--Please choose a Category--</option>
-                {categories.map((m) => {
-                return (
-                    <option value={m.id}>{m.name}</option>
-                ) })}
-            </select>
-        <input
-        type="text"
-        placeholder="Description"
-        onChange={(e) => setDescription(e.target.value)}
-        ></input>
-        <button onClick={handleSave}>Save</button>
+        <div className="container">
+            <div className="bigPlanBlock">
+                <h1 className="title">Create An Exercise</h1>
+                <div>
+                    <input
+                    type="text"
+                    className="bubble"
+                    placeholder="Exercise Name"
+                    onChange={(e) => setName(e.target.value)}
+                    ></input>
+                </div>
+                <div>
+                <label for="category-select"></label>
+                    <select name="categories" id="category-select" className="bubble"
+                    onChange={(event) => setCategoryId(event.target.value) }>
+                        <option value="">--Please choose a Category--</option>
+                        {categories.map((m) => {
+                        return (
+                            <option value={m.id}>{m.name}</option>
+                        ) })}
+                    </select>
+                </div>
+                <div>
+                    <input
+                    type="text"
+                    className="bubble"
+                    placeholder="Description"
+                    onChange={(e) => setDescription(e.target.value)}
+                    ></input>
+                </div>
+                <button className="button-74" onClick={handleSave}>Save</button>
+            </div>
+        </div>
         </>
     )
 }

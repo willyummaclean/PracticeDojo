@@ -34,26 +34,32 @@ export const UpdateProfile = ( {currentUser} ) => {
 
     return (
         <>
-        <h2>Register Your Account</h2>
-            <form>
-                <div>
-                    <input
-                    type="text"
-                    id="fullName"
-                    placeholder={currentProfile.fullName}
-                    onChange={updateUser}
-                    />
-                </div>
-                <div>
-                    <input
-                    type="text"
-                    id="email"
-                    placeholder={currentProfile.email}
-                    onChange={updateUser}
-                    />
-                </div>
-                <button onClick={() => handleUpdate(updatedProfile)}>Save</button>
-            </form>
+        <div className="container">
+            <div className="planBlock">
+                <h2 className="title">Update Your Profile</h2>
+                <form>
+                    <div>
+                        <input
+                        type="text"
+                        id="fullName"
+                        className="button-74"
+                        placeholder={currentProfile.fullName}
+                        onChange={updateUser}
+                        />
+                    </div>
+                    <div>
+                        <input
+                        type="text"
+                        id="email"
+                        className="button-74"
+                        placeholder={currentProfile.email}
+                        onChange={updateUser}
+                        />
+                    </div>
+                    <button className="button-74" onClick={() => handleUpdate(updatedProfile)}>Save</button>
+                </form>
+            </div>
+        </div>
         </>
     )
 }

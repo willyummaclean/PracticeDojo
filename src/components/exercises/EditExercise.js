@@ -49,28 +49,44 @@ export const EditExercise = ( {currentUser} ) => {
 
     return (
         <>
-        <h2>Edit Exercise</h2>
-        <input
-        type="text"
-        defaultValue={exercise.name}
-        onChange={(e) => setName(e.target.value)}
-        ></input>
-        <label htmlFor="category-select"></label>
-            <select name="categories" id="category-select" value={categoryId}
-            onChange={(event) => setCategoryId(parseInt(event.target.value)) }>
-                {/* <option value="">--Please choose a Category--</option> */}
-                {categories.map((m) => {
-                return (
-                    <option value={m.id}>{m.name}</option>
-                ) })}
-            </select>
-        <input
-        type="text"
-        // placeholder="Description"
-        defaultValue={exercise.description}
-        onChange={(e) => setDescription(e.target.value)}
-        ></input>
-        <button onClick={handleSave}>Save</button>
+        <div className="container">
+            <div className="bigPlanBlock">
+                <h1 className="title">Edit Exercise</h1>
+                <div>
+                    
+                    <p className="bubble">Name:</p><input
+                    type="text"
+                    className="bubble"
+                    defaultValue={exercise.name}
+                    onChange={(e) => setName(e.target.value)}
+                    ></input>
+                </div>
+                <div>
+                    <p className="bubble">Category:</p><label htmlFor="category-select"></label>
+                        <select name="categories" id="category-select" value={categoryId} className="bubble"
+                        onChange={(event) => setCategoryId(parseInt(event.target.value)) }>
+                            {/* <option value="">--Please choose a Category--</option> */}
+                            {categories.map((m) => {
+                            return (
+                                <option value={m.id}>{m.name}</option>
+                            ) })}
+                        </select>
+                </div>
+                <div>
+                    <p className="bubble">Description:</p>
+                </div>
+                <div>
+                    <textarea
+                    rows={5} cols={40}
+                    // placeholder="Description"
+                    className="bubble"
+                    defaultValue={exercise.description}
+                    onChange={(e) => setDescription(e.target.value)}
+                    />
+                </div>
+                <button className="button-74" onClick={handleSave}>Save</button>
+            </div>
+        </div>
         </>
     )
 }

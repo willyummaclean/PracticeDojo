@@ -47,26 +47,30 @@ export const Register = () => {
 
     return (
         <>
-        <h2>Register Your Account</h2>
-            <form>
-                <div>
-                    <input
-                    type="text"
-                    id="fullName"
-                    placeholder="Full Name"
-                    onChange={updateUser}
-                    />
-                </div>
-                <div>
-                    <input
-                    type="text"
-                    id="email"
-                    placeholder="Email"
-                    onChange={updateUser}
-                    />
-                </div>
-                <button onClick={handleRegister}>Register</button>
-            </form>
+        <div className="container">
+            <div className="planBlock">
+                <h2 className="title">Register Your Account</h2>
+                <form>
+                    <div>
+                        <input
+                        type="text"
+                        id="fullName"
+                        placeholder="Full Name"
+                        onChange={updateUser}
+                        />
+                    </div>
+                    <div>
+                        <input
+                        type="text"
+                        id="email"
+                        placeholder="Email"
+                        onChange={updateUser}
+                        />
+                    </div>
+                    <button onClick={handleRegister}>Register</button>
+                </form>
+            </div>
+        </div>
         </>
     )
 }

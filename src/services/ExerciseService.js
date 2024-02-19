@@ -5,7 +5,7 @@ export const getExercises = () => {
 }
 
 export const getExerciseById = (id) => {
-    return fetch(`${apiUrl}/exercises/${id}`).then((res) => res.json())
+    return fetch(`${apiUrl}/exercises/${id}?_embed=categories`).then((res) => res.json())
 }
 
 

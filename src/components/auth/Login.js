@@ -25,19 +25,22 @@ export const Login = () => {
       })
     }
 
-    return (
-    <div>
-        <h2>Login Page</h2>
-        <form>
-            <input
+  return (
+    <div className="container">
+        <div className="planBlock">
+            <h2 className="title">Login</h2>
+            <form>
+              <input
               type="email"
               value={email}
+              className="button-74"
               placeholder="Email"
               onChange={(e) => setEmail(e.target.value)}
-            />
-            <button onClick={handleLogin}>Login</button>
-        </form>
-        <Link to="/register">Register</Link>
+              />
+            <button className="button-74" onClick={handleLogin}>Login</button>
+          </form>
+          <button className="button-74" onClick={() => navigate("/register")}>Register</button>
+      </div>
     </div>
     )
 }

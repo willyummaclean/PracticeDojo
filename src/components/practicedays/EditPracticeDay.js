@@ -44,22 +44,28 @@ export const EditPracticeDay = ({currentUser}) => {
 
 
     return (
-         <>
-        <h2>Edit Practice Day</h2>
-        <div>
-           <h1>{practiceDay.date}</h1>
-        </div>
-        <div>
-            <label htmlFor="plan-select"></label>
-                <select name="plans" id="plan-select"
-                onChange={(event) => handlePlan(event)}>
-                    <option value="">--Please choose a Plan--</option>
-                    {userPlans.map((p) => {
-                    return (
-                        <option value={p.id}>{p.name}</option>
-                    ) })}
-                </select>
-            <button onClick={() => handleSave()}>Save</button>
+        <>
+        <div className="container">
+            <div className="bigPlanBlock">
+                <h2 className="title">Edit Practice Day</h2>
+                <div>
+                <h1 className="title">{practiceDay.date}</h1>
+                </div>
+                <div>
+                    <label htmlFor="plan-select"></label>
+                       <select name="plans" id="plan-select" className="bubble"
+                        onChange={(event) => handlePlan(event)}>
+                            <option value="">--Please choose a Plan--</option>
+                            {userPlans.map((p) => {
+                            return (
+                                <option value={p.id}>{p.name}</option>
+                            ) })}
+                        </select>
+               </div>
+               <div>
+                    <button className="button-74" onClick={() => handleSave()}>Save</button>
+                </div>
+            </div>
         </div>
         </>
     )

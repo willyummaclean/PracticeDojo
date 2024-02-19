@@ -3,7 +3,7 @@ import { createPracticePlan, getAllPlans } from "../../services/PlanService"
 import { useNavigate } from "react-router-dom"
 import { getCategories } from "../../services/CategoryService"
 import { getExercises } from "../../services/ExerciseService"
-
+import "./Plans.css"
 
 export const CreatePlan = ( {currentUser} ) => {
     
@@ -85,51 +85,64 @@ export const CreatePlan = ( {currentUser} ) => {
 
     return (
         <>
-        <h2>Create Plan</h2>
-        <div>
-            <input
-            type="text"
-            placeholder="Plan Name"
-            onChange={(e) => setName(e.target.value)}
-            ></input>
+        <div className="container">
+            <div  className="title-container">
+                <h1 className="title">Create a Plan</h1>
+                <div>
+                <h2 className="title">Name:</h2>
+                <input
+                    type="text"
+                    placeholder="Plan Name"
+                    className="button-74" 
+                    onChange={(e) => setName(e.target.value)}
+                ></input>
+                </div>     
+            </div>
+            <div className="planBlock"> 
+                <label htmlFor="category-select"></label>
+                    <select className="button-74" name="categories" id="category-select" 
+                        onChange={(event) => handleCategory(event)}>
+                        <option value="">--Please choose a Category--</option>
+                        {categories.map((c) => {
+                        return (
+                            <option value={c.id}>{c.name}</option>
+                        ) })}
+                        </select>
+                    <button className="button-74" onClick={(categoryId) =>
+                        handleExercises(categoryId)}>Show Exercises
+                    </button>
+            </div>  
+            <div className="planBlock">
+            <h2 className="title">Category Exercises</h2>
+                <div>   
+                    {exercises? (
+                        exercises.map((e) => {
+                            return (
+                                <p>
+                                <button className="button-74"  onClick={() => handleAdd(e)} value={e.id}>{e.name}</button>
+                                </p>
+                        )})
+                    ) : ("")}
+                </div>
+            </div>
+        
+            <div className="planBlock">
+                <h2 className="title">Selected Exercises</h2>
+                {planExercises? (
+                    planExercises.map((e) => {
+                        return (
+                            <div>
+                            <h4><button className="button-74" onClick={() => handleRemove(e)} value={e.id}>{e.name}</button></h4>
+                            </div>
+                    )})
+                ) : ("")}   
+            </div>
         </div>
-        <div>
-            <label htmlFor="category-select"></label>
-                <select name="categories" id="category-select" 
-                onChange={(event) => handleCategory(event)}>
-                    <option value="">--Please choose a Category--</option>
-                    {categories.map((c) => {
-                    return (
-                        <option value={c.id}>{c.name}</option>
-                    ) })}
-                </select>
-            <button onClick={(categoryId) =>
-                 handleExercises(categoryId)}>Show Exercises in This Category</button>
+        <div className="button-container">
+                <div className="second-title-container">
+                    <button className="button-74" onClick={handleSave}>Save</button>
+                </div>
         </div>
-        <div>   
-            {exercises? (
-                exercises.map((e) => {
-                    return (
-                        <p>
-                        <button onClick={() => handleAdd(e)} value={e.id}>{e.name}</button>
-                        </p>
-                )})
-            ) : ("")}
-        </div>
-        <div>
-            <h2>Selected Exercises</h2>
-            {planExercises? (
-                planExercises.map((e) => {
-                    return (
-                        <div>
-                        <h4>{e.name}<button onClick={() => handleRemove(e)} value={e.id}>Remove</button></h4>
-                        </div>
-                )})
-            ) : ("")}   
-        </div>
-
-
-        <button onClick={handleSave}>Save</button>
         </>
     )
 }

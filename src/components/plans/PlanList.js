@@ -36,9 +36,9 @@ export const PlanList = ( {currentUser} ) => {
                     <h2 className="title">My Plans</h2>
                 </div>
                 <div className="planBlock">
-                    <button className="button-87"
+                    <button className="button-74"
                     onClick={() => navigate("createplan")} 
-                    >Create A New Plan</button>
+                    >Create Plan</button>
                 </div>
             
             <article className="planContainer">
@@ -47,9 +47,9 @@ export const PlanList = ( {currentUser} ) => {
                     <>
                     <div  className="planBlock">
                         <h4 className="planTitle">{plan.name}</h4> 
-                        <button className="button-87" onClick={() => navigate(`/myplans/${plan.id}`)}>View</button>
-                        <button className="button-87" onClick={() => navigate(`editplan/${plan.id}`)}>Edit</button>
-                        <button className="button-87" onClick={() => handleDelete(plan.id)}>Delete</button>
+                        <button className="button-74" onClick={() => navigate(`/myplans/${plan.id}`)}>View</button>
+                        <button className="button-74" onClick={() => navigate(`editplan/${plan.id}`)}>Edit</button>
+                        <button className="button-74" onClick={() => handleDelete(plan.id)}>Delete</button>
                     </div>
                     </>
                     )

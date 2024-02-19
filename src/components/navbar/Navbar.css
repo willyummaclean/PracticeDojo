@@ -1,10 +1,10 @@
 .navbar {
   display: flex;
+  justify-content: center;
   flex-wrap: nowrap;
   background-color: var(--dark);
-  margin: 0;
   width: 100%;
-  padding: 0.5rem;
+  padding: 50px;
 }
 
 .navbar-item {
@@ -12,6 +12,10 @@
   list-style-type: none;
   text-align: center;
   color: var(--offWhite);
+  justify-content: center;
+  align-items: center;
+  outline: 0
+  
 }
 
 .navbar-link {
@@ -19,6 +23,7 @@
   font-family:  Trattatello, fantasy;
   letter-spacing: 1px;
   font-size: x-large;
+  outline: 0
 }
 
 .navbar-logout {
@@ -27,4 +32,8 @@
 
 .navbar-link:hover {
   color: var(--primary);
+}
+
+.navbar-container {
+  justify-items: center;
 }

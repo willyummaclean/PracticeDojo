@@ -40,23 +40,31 @@ export const PracticeDayList = ( {currentUser} ) => {
         deletePracticeDay(practiceDayId).then(() => getAndSetPlans())
     }
     return ( 
-        <div>
-            <h2>My Practice Days</h2>
-            <button
-            onClick={() => navigate("createpracticeday")} 
-            >Create A Practice Day</button>
-            <article>
+        <div className="container">
+            <div  className="title-container">
+                <h1 className="title">My Practice Days</h1>
+            </div>
+            <div className="planBlock">
+                <button className="button-74"
+                onClick={() => navigate("createpracticeday")} 
+                >Create Practice Day</button>
+            </div>
+            <div className="planContainer">
                 {practiceDays.map((practiceDay) => {
                     const plan = plans.find((p) => p.id === practiceDay.planId)
                     return (
                     <>
-                    <div><Link to={`/practicedays/${practiceDay.id}`}> <p>{practiceDay.date} : {plan.name}</p> </Link>
-                    <button onClick={() => handleDelete(practiceDay.id)}>Delete</button>
-                    <button onClick={() => navigate(`/practicedays/edit/${practiceDay.id}`)}>Edit</button></div>
+                    <div className="planBlock">
+                        <h4 className="planTitle">{practiceDay.date} : {plan.name}</h4> 
+                        <button className="button-74" onClick={() => navigate(`/practicedays/${practiceDay.id}`)}>View</button>
+                        <button className="button-74" onClick={() => navigate(`/practicedays/edit/${practiceDay.id}`)}>Edit</button>
+                        <button className="button-74" onClick={() => handleDelete(practiceDay.id)}>Delete</button>
+                    </div>
                     </>
                     )
                 })}
-            </article>
+            </div>
+            
         </div>
     )
 

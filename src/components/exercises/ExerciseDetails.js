@@ -1,15 +1,17 @@
 import { useEffect, useState } from "react"
 import { getExerciseById } from "../../services/ExerciseService"
 import { getCategories } from "../../services/CategoryService"
+import { useParams } from "react-router-dom"
 
 
-export const ExerciseDetails = ( {detailsId} ) => {
+export const ExerciseDetails = ( ) => {
     const [exercise, setExercise] = useState({})
     const [category, setCategory] = useState({})
+    const { exerciseId } = useParams()
     
     useEffect(() => {
-        getExerciseById(detailsId).then((data) => setExercise(data)) 
-    }, [detailsId])
+        getExerciseById(exerciseId).then((data) => setExercise(data)) 
+    }, [exerciseId])
 
     useEffect(() => {
         getCategories().then((categories) => categories.filter((c) => c.id === exercise.categoryId)).then((data) => setCategory(data[0]))
@@ -17,15 +19,15 @@ export const ExerciseDetails = ( {detailsId} ) => {
     }, [exercise])
    
     return (
-       
         <>
-        <div>
-            <h2>Exercise Details</h2>
-            <p >Exercise Name:  {exercise.name}</p>
-            <p>Description:  {exercise.description}</p>
-            <p>Category:  {category?.name}</p>
+        <div className="container">
+            <div className="bigPlanBlock">
+                <h1 className="title">Exercise Details</h1>
+                <div><p className="bubble">Exercise Name:</p><p className="bubble"> {exercise.name}</p></div>
+                <div><p className="bubble">Description:</p><p className="bubble">  {exercise.description}</p></div>
+                <div><p className="bubble">Category:</p><p className="bubble">{category?.name}</p></div>
+            </div>
         </div>
         </>
     )
-      
 }

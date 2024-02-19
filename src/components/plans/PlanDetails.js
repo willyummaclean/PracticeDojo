@@ -21,21 +21,21 @@ export const PlanDetails = ( {currentUser} ) => {
 
     return (
         <>
-        <div>
-        <h1>{plan.name}</h1>
-        </div>
-        <div>
-            <h4>Plan Exercises</h4>
-            <ul>
-            {planExercises? (
-                planExercises.map((e) => {
-                    return (
-                        <div>
-                        <li>{e.name}</li>
-                        </div>    
-                )})
-            ) : ("")}
-            </ul>   
+        <div className="container">
+            <div className="bigPlanBlock">
+                <h1 className="title">{plan.name}</h1>
+                    <h2 className="title">Plan Exercises</h2>
+                    <ul>
+                    {planExercises? (
+                        planExercises.map((e) => {
+                            return (
+                                <div>
+                                <li><h4 className="bubble">{e.name}</h4></li>
+                                </div>    
+                        )})
+                    ) : ("")}
+                    </ul>   
+            </div>
         </div>
         </>
     )

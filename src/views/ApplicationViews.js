@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import { Route, Routes, Outlet } from "react-router-dom"
 import { PlanList } from "../components/plans/PlanList"
 import { PracticeNavbar } from "../components/navbar/PracticeNavbar"
-import { Home } from "../components/plans/Home"
+import { Home } from "../components/home/Home"
 import { UpdateProfile } from "../components/auth/UpdateProfile"
 import { PlanDetails } from "../components/plans/PlanDetails"
 import { CreatePlan } from "../components/plans/CreatePlan"
@@ -14,6 +14,7 @@ import { PracticeDayList } from "../components/practicedays/PracticeDayList"
 import { CreatePracticeDay } from "../components/practicedays/CreatePracticeDay"
 import { PracticeDayDetails } from "../components/practicedays/PracticeDayDetails"
 import { EditPracticeDay } from "../components/practicedays/EditPracticeDay"
+import { ExerciseDetails } from "../components/exercises/ExerciseDetails"
 
 
 export const ApplicationViews = () => {
@@ -47,6 +48,7 @@ useEffect(() => {
             </Route>
             <Route path="exercises">
                 <Route index element={<Exercises currentUser={currentUser}/>} /> 
+                <Route path=":exerciseId" element={<ExerciseDetails currentUser={currentUser}/>}/>
                 <Route path="createexercise" element={<CreateExercise currentUser={currentUser}/>}/>
                 <Route path="editexercise" >
                     <Route path=":exerciseId" element={<EditExercise currentUser={currentUser}/>}/>

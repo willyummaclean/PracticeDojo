@@ -4,6 +4,7 @@
 
 }
 
+
 .title-container {
     margin: 2rem auto;
     width: 60%;
@@ -12,6 +13,26 @@
 
     width: 300px;
     height: 300px;
+    margin: 20px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 2px 2px 15px 2px #111;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    perspective: 2000px;
+
+  }
+
+  .second-title-container {
+    margin: 2rem auto;
+    width: 60%;
+    text-align: center;
+    padding: 5rem 3rem;
+
+    width: 300px;
+    height: 50px;
     margin: 20px;
     position: relative;
     overflow: hidden;
@@ -54,40 +75,157 @@
     perspective: 2000px;
   }
 
+   
+  .bigPlanBlock {
+    margin: 2rem auto;
+    width: 60%;
+    text-align: center;
+    padding: 5rem 3rem;
+
+    width: 600px;
+    height: 600px;
+    margin: 20px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 2px 2px 15px 2px #111;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    perspective: 2000px;
+  }
+
+  .inputBlock {
+    margin: 2rem auto;
+    width: 60%;
+    text-align: center;
+    padding: 5rem 3rem;
+
+    width: 300px;
+    height: 160px;
+    margin: 20px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 2px 2px 15px 2px #111;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    perspective: 2000px;
+  }
+
   .planTitle {
     font-family: Trattatello, fantasy;
     text-decoration: none;
     font-size: x-large;
 }
 
+.button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: -60px;
+}
 
-.button-87 {
-  margin: 10px;
-  padding: 15px 30px;
-  text-align: center;
-  text-transform: uppercase;
-  transition: 0.5s;
-  background-size: 200% auto;
-  color: white;
-  border-radius: 10px;
-  display: block;
-  border: 0px;
-  font-weight: 700;
-  box-shadow: 0px 0px 14px -7px #f09819;
-  background-image: linear-gradient(45deg, #FF512F 0%, #F09819  51%, #FF512F  100%);
+/* CSS */
+.button-74 {
+  background-color: #fbeee0;
+  border: 2px solid #422800;
+  border-radius: 30px;
+  box-shadow: #422800 4px 4px 0 0;
+  color: #422800;
   cursor: pointer;
+  display: inline-block;
+  font-weight: 600;
+  font-size: 18px;
+  padding: 0 18px;
+  font-family: Trattatello, fantasy;
+  line-height: 50px;
+  text-align: center;
+  text-decoration: none;
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
 }
 
-.button-87:hover {
-  background-position: right center;
-  /* change the direction of the change here */
-  color: #fff;
-  text-decoration: none;
+.button-74:hover {
+  background-color: #fff;
 }
 
-.button-87:active {
-  transform: scale(0.95);
+.button-74:active {
+  box-shadow: #422800 2px 2px 0 0;
+  transform: translate(2px, 2px);
+}
+
+@media (min-width: 768px) {
+  .button-74 {
+    min-width: 120px;
+    padding: 0 25px;
+  }
+}
+
+.bubble {
+  background-color: #fbeee0;
+  border: 2px solid #422800;
+  border-radius: 30px;
+  box-shadow: #422800 4px 4px 0 0;
+  color: #422800;
+  cursor: pointer;
+  display: inline-block;
+  font-weight: 600;
+  font-size: 18px;
+  padding: 0 18px;
+  font-family: Trattatello, fantasy;
+  line-height: 50px;
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.bubble-big {
+  height: 120px;
+  justify-content: center;
+  align-content: end;
+
+  background-color: #fbeee0;
+  border: 2px solid #422800;
+  border-radius: 30px;
+  box-shadow: #422800 4px 4px 0 0;
+  color: #422800;
+  cursor: pointer;
+  display: inline-block;
+  font-weight: 600;
+  font-size: 18px;
+  padding: 0 18px;
+  font-family: Trattatello, fantasy;
+  line-height: 50px;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.input {
+  font-family: Trattatello, fantasy;
+  height: 20px;
+  
+}
+
+.inputBubble {
+  background-color: #fbeee0;
+  border: 2px solid #422800;
+  border-radius: 30px;
+  box-shadow: #422800 4px 4px 0 0;
+  color: #422800;
+  cursor: pointer;
+  display: inline-block;
+  font-weight: 600;
+  font-size: 18px;
+  padding: 0 18px;
+  font-family: Trattatello, fantasy;
+  line-height: 200px;
+  text-align: start;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
 }

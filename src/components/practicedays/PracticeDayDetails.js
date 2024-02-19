@@ -39,22 +39,24 @@ export const PracticeDayDetails = () => {
 
     return (
         <>
-        <div>
-        <h1>{practiceDay.date}</h1>
-        </div>
-        <div>
-            <h3>{plan.name}</h3>
-            <h4>Plan Exercises</h4>
-            <ul>
-            {planExercises? (
-                planExercises.map((e) => {
-                    return (
-                        <div>
-                        <li>{e.name}</li>
-                        </div>    
-                )})
-            ) : ("")}
-            </ul>   
+        <div className="container">
+            <div className="bigPlanBlock">
+                <div>
+                    <h1 className="title">{practiceDay.date}</h1>
+                    <h2 className="title">{plan.name}</h2>
+                    <h3 className="title">Plan Exercises :</h3>
+                    <ul>
+                    {planExercises? (
+                        planExercises.map((e) => {
+                            return (
+                                <div>
+                                <h4 className="title"><button className="button-74" >{e.name}</button></h4>
+                                </div>    
+                        )})
+                    ) : ("")}
+                    </ul>   
+                </div>
+            </div>
         </div>
         </>
     )

@@ -15,18 +15,20 @@ export const Exercises = () => {
     return (
         <>
         <div className="container">
-            <div className="row">
-                <button onClick={() => navigate("createexercise")}>Create Exercise</button>
-                <div className="col-sm-8">
-                <ExerciseList setDetailsId={setDetailsId}/>
-                </div>
-                {detailsId?
-                (<div className="col-sm-4">
-                <ExerciseDetails detailsId={detailsId}/>
-                </div>) : ""
-                }   
+            <div class="title-container">
+                <h1 className="title">Exercises</h1>
             </div>
+            <div className="planBlock">
+                <button className="button-74" onClick={() => navigate("createexercise")}>Create Exercise</button>
+            </div>
+                <ExerciseList setDetailsId={setDetailsId}/>  
         </div>
         </>
     )
 }
+
+// {detailsId?
+//     (
+//     <ExerciseDetails detailsId={detailsId}/>
+//     ) : ""
+//     } 
